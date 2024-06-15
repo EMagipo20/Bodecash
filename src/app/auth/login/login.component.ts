@@ -44,7 +44,7 @@ export class LoginComponent {
     this.authService.login(request).subscribe(
       (data: any) => {
         sessionStorage.setItem('token', data.jwttoken);
-        this.router.navigate(['dashborad']);
+        this.router.navigate(['sidenav']);
       },
       (error) => {
         this.mensaje = 'Credenciales incorrectas!!';

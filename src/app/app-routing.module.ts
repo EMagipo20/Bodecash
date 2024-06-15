@@ -4,11 +4,13 @@ import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from './bodecash/dashboard/dashboard.component';
 import { segGuard } from './guards/seguridad.guard';
+import { SidenavComponent } from './bodecash/sidenav/sidenav.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'sidenav', component: SidenavComponent },
 
   //Rutas de Bodecash
   {
