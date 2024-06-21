@@ -2,82 +2,37 @@ import { INavbarData } from "./helper";
 
 export const navbarData: INavbarData[] = [
     {
-        routeLink: 'dashboard',
+        routeLink: 'cliente',
         icon: 'fal fa-home',
-        label: 'Dashboard'
+        label: 'CLIENTE'
     },
     {
-        routeLink: 'gestiones',
+        routeLink: 'producto',
         icon: 'fal fa-users-cog',
-        label: 'Gestión de registro',
-        items: [
-            {
-                routeLink: 'gestiones/nuevo',
-                icon: 'fal fa-user-plus',
-                label: 'Nuevo registro'
-            },
-            {
-                routeLink: 'gestiones/actualizar',
-                icon: 'fal fa-user-edit',
-                label: 'Actualizar registro'
-            },
-            {
-                routeLink: 'gestiones/listar',
-                icon: 'fal fa-user-plus',
-                label: 'Historial de clientes'
-            }
-        ]
+        label: 'PRODUCTO'
+
     },
     {
-        routeLink: 'bodega',
+        routeLink: 'tipo_de_producto',
         icon: 'fal fa-warehouse',
-        label: 'Bodega',
-        items: [
-            {
-                routeLink: 'bodega/productos',
-                label: 'Productos'
-            }
-        ]
+        label: 'TIPO DE PRODUCTO'
+
     },
     {
-        routeLink: 'creditos',
+        routeLink: 'venta',
         icon: 'fal fa-credit-card',
-        label: 'Créditos',
-        items: [
-            {
-                routeLink: 'creditos/nueva-compra',
-                label: 'Nueva compra'
-            },
-            {
-                routeLink: 'creditos/asignar-credito',
-                label: 'Asignar crédito'
-            }
-        ]
+        label: 'VENTA'
     },
     {
-        routeLink: 'historial',
+        routeLink: 'credito',
         icon: 'fal fa-history',
-        label: 'Historial',
-        items: [
-            {
-                routeLink: 'historial/mis-compras',
-                label: 'Mis compras'
-            },
-            {
-                routeLink: 'historial/mis-creditos',
-                label: 'Mis créditos'
-            }
-        ]
+        label: 'CRÉDITO'
+
     },
     {
-        routeLink: 'configuracion',
+        routeLink: 'reportes',
         icon: 'fal fa-cog',
-        label: 'Configuración',
-        items: [
-            {
-                routeLink: 'configuracion/mi-perfil',
-                label: 'Mi perfil'
-            }
-        ]
+        label: 'REPORTES'
+
     }
 ];

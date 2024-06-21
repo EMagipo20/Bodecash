@@ -38,7 +38,7 @@ export function tokenGetter() {
         tokenGetter: tokenGetter,
         allowedDomains: ['localhost:8080'],
         disallowedRoutes: [
-          'http://localhost:8080/auth/registrar'
+          'http://localhost:8080/auth/register'
         ],
       },
     }),

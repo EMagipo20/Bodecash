@@ -16,7 +16,7 @@ export class UsuarioService {
 
   // Método para crear un nuevo usuario y su rol asociado
   public crear(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(`${this.baseUrl}/registrar`, usuario, { headers: this.headers }).pipe(
+    return this.http.post<Usuario>(`${this.baseUrl}/register`, usuario, { headers: this.headers }).pipe(
       tap(createdUser => {
         console.log('Usuario creado con éxito:', createdUser);
       }),
