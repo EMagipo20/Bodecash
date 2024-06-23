@@ -8,16 +8,28 @@ import { SidenavComponent } from './bodecash/sidenav/sidenav.component';
 import { SublevelMenuComponent } from './bodecash/sidenav/sublevel-menu.component';
 import { AppComponent } from './app.component';
 import { BodyComponent } from './bodecash/body/body.component';
-import { DashboardComponent } from './bodecash/dashboard/dashboard.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
-import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { JwtModuleOptions } from '@auth0/angular-jwt';
 import { RegisterComponent } from './auth/register/register.component';
 import { ClienteCrearComponent } from './bodecash/component/cliente/cliente-crear/cliente-crear.component';
+import { ClienteListarComponent } from './bodecash/component/cliente/cliente-listar/cliente-listar.component';
 
 export function tokenGetter() {
   return sessionStorage.getItem('token');
 }
+
+const jwtModuleOptions: JwtModuleOptions = {
+  config: {
+    tokenGetter: tokenGetter,
+    allowedDomains: ['localhost:8080'],
+    disallowedRoutes: [
+      'http://localhost:8080/auth/register',
+      'http://localhost:8080/auth/buscar-por-username/{username}',
+      'http://localhost:8080/auth/users',
+    ],
+  },
+};
 
 @NgModule({
   declarations: [
@@ -25,9 +37,9 @@ export function tokenGetter() {
     SidenavComponent,
     SublevelMenuComponent,
     BodyComponent,
-    DashboardComponent,
     RegisterComponent,
-    ClienteCrearComponent
+    ClienteCrearComponent,
+    ClienteListarComponent
   ],
   imports: [
     BrowserModule,
@@ -35,23 +47,9 @@ export function tokenGetter() {
     AngularMaterialModule,
     AppRoutingModule,
     HttpClientModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        allowedDomains: ['localhost:8080'],
-        disallowedRoutes: [
-          'http://localhost:8080/auth/register',
-          'http://localhost:8080/auth/buscar-por-username/{username}',
-        ],
-      },
-    }),
+    JwtModule.forRoot(jwtModuleOptions)
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
   ],
   bootstrap: [AppComponent]
 })

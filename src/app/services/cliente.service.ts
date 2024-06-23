@@ -14,12 +14,12 @@ export class ClienteService {
   constructor(private http: HttpClient) { }
 
   // Registrar cliente
-  registrarCliente(cliente: Cliente) {
+  registrarCliente(cliente: Cliente): Observable<Cliente> {
     return this.http.post<Cliente>(`${this.baseUrl}/registrar`, cliente);
   }
 
   // Actualizar cliente
-  actualizarCliente(id: number, cliente: Cliente) {
+  actualizarCliente(id: number, cliente: Cliente): Observable<Cliente> {
     return this.http.put<Cliente>(`${this.baseUrl}/actualizar/${id}`, cliente);
   }
 

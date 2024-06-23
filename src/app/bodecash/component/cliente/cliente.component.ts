@@ -1,17 +1,14 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, RouterOutlet } from '@angular/router';
-import {ClienteListarComponent} from './cliente-listar/cliente-listar.component'
-import { ClienteCrearComponent } from './cliente-crear/cliente-crear.component';
+import { RouterOutlet } from '@angular/router';
+
 @Component({
   selector: 'app-cliente',
   standalone: true,
-  imports: [RouterOutlet, ClienteListarComponent],
+  imports: [RouterOutlet ],
   templateUrl: './cliente.component.html',
   styleUrl: './cliente.component.scss'
 })
 export class ClienteComponent {
-  constructor(public route:ActivatedRoute) {}
-
 }
 
 

@@ -5,9 +5,10 @@ import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from './bodecash/dashboard/dashboard.component';
 import { segGuard } from './guards/seguridad.guard';
 import { SidenavComponent } from './bodecash/sidenav/sidenav.component';
-import { ClienteComponent } from './bodecash/component/cliente/cliente.component'; // Importa el componente
+import { ClienteComponent } from './bodecash/component/cliente/cliente.component';
 import { ReportesComponent } from './bodecash/component/reportes/reportes.component';
 import { ClienteCrearComponent } from './bodecash/component/cliente/cliente-crear/cliente-crear.component';
+import { ClienteListarComponent } from './bodecash/component/cliente/cliente-listar/cliente-listar.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -17,8 +18,14 @@ const routes: Routes = [
     path: 'sidenav',
     component: SidenavComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'cliente', component: ClienteComponent, canActivate: [segGuard] },
+      { path: 'cliente', component: ClienteComponent,
+        children:[
+          { path: 'cliente-crear', component: ClienteCrearComponent},
+          { path: 'cliente-listar', component: ClienteListarComponent},
+         ],
+         canActivate: [segGuard]
+      },
+      { path: 'cliente-crear', component: ClienteCrearComponent},
       { path: 'producto', component: ClienteComponent, canActivate: [segGuard] },
       { path: 'tipo_de_producto', component: ClienteComponent, canActivate: [segGuard] },
       { path: 'venta', component: ClienteComponent, canActivate: [segGuard] },

@@ -37,14 +37,13 @@ export class LoginComponent {
   ) {}
 
   ngOnInit(): void {}
-  login() {
-    let request = new JwtRequest();
-    request.username = this.username;
-    request.password = this.password;
-    this.authService.login(request).subscribe(
-      (data: any) => {
-        sessionStorage.setItem('token', data.jwttoken);
-        this.router.navigate(['sidenav']);
+  login(): void {
+    this.authService.login({ username: this.username, password: this.password }).subscribe(
+      () => {
+        console.log('Login successful');
+        const token = this.authService.getToken();
+        console.log('Token:', token);
+        this.router.navigate(['sidenav'])
       },
       (error) => {
         this.mensaje = 'Credenciales incorrectas!!';

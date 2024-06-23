@@ -8,7 +8,7 @@ export const segGuard = (
 ) => {
     const lService=inject(AuthService)
     const router=inject(Router)
-    const rpta=lService.verificar();
+    const rpta=lService.getToken();
     if(!rpta){
       router.navigate(['/login']);
       return false;

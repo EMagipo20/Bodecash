@@ -1,26 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-import { Cliente } from '../../../../models/cliente';
+import { AuthService } from '../../../../services/auth.service';
 import { ClienteService } from '../../../../services/cliente.service';
+import { UsuarioService } from '../../../../services/usuario.service';
+import { Router } from '@angular/router';
+import { Cliente } from '../../../../models/cliente';
 
 @Component({
   selector: 'app-cliente-crear',
-  templateUrl:'./cliente-crear.component.html',
+  templateUrl: './cliente-crear.component.html',
   styleUrls: ['./cliente-crear.component.scss']
 })
-export class ClienteCrearComponent {
+export class ClienteCrearComponent implements OnInit {
   clienteForm: FormGroup = new FormGroup({});
-  Cliente: Cliente = new Cliente;
-  username: string;
+  username: string = '';
 
   constructor(
     private fb: FormBuilder,
     private clienteService: ClienteService,
-    private snackBar: MatSnackBar
-  ) {
-    this.username = '';
-  }
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
+    private usuarioService: UsuarioService,
+    private router: Router
+  ) { this.username = this.authService.getUsername() || '';}
 
   ngOnInit(): void {
     this.clienteForm = this.fb.group({
@@ -30,48 +33,35 @@ export class ClienteCrearComponent {
       numeroDocumento: ['', Validators.required],
       limiteCredito: ['', Validators.required],
       telefono: ['', [Validators.required, Validators.maxLength(9)]],
-      direccion: ['', Validators.required]
+      direccion: ['', Validators.required],
+      idUsuario: ['']
     });
   }
 
-  submitForm(): void {
+  continuar(): void {
     if (this.clienteForm.invalid) {
       return;
     }
 
-    const cliente: Cliente = {
-      ...this.clienteForm.value,
-      idUsuario: this.username // Ajusta el valor correcto para el nombre de usuario
-    };
+    sessionStorage.setItem('profileCompleted', 'true');
 
-    this.clienteService.registrarCliente(cliente).subscribe(
-      () => {
-        this.showSuccessMessage('✔ Cliente registrado correctamente');
-        this.clienteForm.reset(); // Reinicia el formulario después de registrar correctamente
-      },
-      error => {
-        this.showErrorMessage('✘ Error al registrar cliente');
-      }
-    );
-  }
+    this.usuarioService.listarTodos().subscribe(
+      usuarios => {
+        const usuario = usuarios.find(u => u.username === this.username);
+        if (!usuario) {
+          return;
+        }
 
-  actualizarCliente(): void {
-    if (this.clienteForm.invalid) {
-      return;
-    }
+        const cliente: Cliente = {
+          ...this.clienteForm.value,
+          usuarioId: usuario.id
+        };
 
-    const cliente: Cliente = {
-      ...this.clienteForm.value,
-      idUsuario: this.username
-    };
-
-    this.clienteService.actualizarCliente(cliente.id, cliente).subscribe(
-      () => {
-        this.showSuccessMessage('✔ Cliente actualizado correctamente');
-        this.clienteForm.reset();
-      },
-      error => {
-        this.showErrorMessage('✘ Error al actualizar cliente');
+        this.clienteService.registrarCliente(cliente).subscribe(
+          () => {
+            this.showSuccessMessage('✔ Gracias por brindarnos tu información');
+          }
+        );
       }
     );
   }
@@ -80,14 +70,6 @@ export class ClienteCrearComponent {
     const config: MatSnackBarConfig = {
       duration: 3000,
       panelClass: ['snack-bar-success']
-    };
-    this.snackBar.open(message, 'Cerrar', config);
-  }
-
-  private showErrorMessage(message: string): void {
-    const config: MatSnackBarConfig = {
-      duration: 3000,
-      panelClass: ['snack-bar-error']
     };
     this.snackBar.open(message, 'Cerrar', config);
   }
