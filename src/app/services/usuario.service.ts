@@ -40,4 +40,8 @@ export class UsuarioService {
     }
     return throwError(errorMessage);
   }
+
+  findByUsername(username: string): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.baseUrl}/buscar-por-username/${username}`);
+  }
 }

@@ -13,6 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { RegisterComponent } from './auth/register/register.component';
+import { ClienteCrearComponent } from './bodecash/component/cliente/cliente-crear/cliente-crear.component';
 
 export function tokenGetter() {
   return sessionStorage.getItem('token');
@@ -25,7 +26,8 @@ export function tokenGetter() {
     SublevelMenuComponent,
     BodyComponent,
     DashboardComponent,
-    RegisterComponent
+    RegisterComponent,
+    ClienteCrearComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ export function tokenGetter() {
         tokenGetter: tokenGetter,
         allowedDomains: ['localhost:8080'],
         disallowedRoutes: [
-          'http://localhost:8080/auth/register'
+          'http://localhost:8080/auth/register',
+          'http://localhost:8080/auth/buscar-por-username/{username}',
         ],
       },
     }),

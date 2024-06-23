@@ -1,0 +1,51 @@
+<div class="card">
+    <form [formGroup]="clienteForm" (ngSubmit)="submitForm()" class="form">
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" required>
+        <mat-error *ngIf="clienteForm.get('nombre')?.hasError('required')">Este campo es obligatorio</mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="apellido" required>
+        <mat-error *ngIf="clienteForm.get('apellido')?.hasError('required')">Este campo es obligatorio</mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Correo</mat-label>
+        <input matInput formControlName="correo" required email>
+        <mat-error *ngIf="clienteForm.get('correo')?.hasError('required')">Este campo es obligatorio</mat-error>
+        <mat-error *ngIf="clienteForm.get('correo')?.hasError('email')">Por favor, ingrese una dirección de email válida</mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Número de Documento</mat-label>
+        <input matInput formControlName="numeroDocumento" required>
+        <mat-error *ngIf="clienteForm.get('numeroDocumento')?.hasError('required')">Este campo es obligatorio</mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Límite de Crédito</mat-label>
+        <input matInput formControlName="limiteCredito" required>
+        <mat-error *ngIf="clienteForm.get('limiteCredito')?.hasError('required')">Este campo es obligatorio</mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="telefono" required maxlength="9">
+        <mat-error *ngIf="clienteForm.get('telefono')?.hasError('required')">Este campo es obligatorio</mat-error>
+        <mat-error *ngIf="clienteForm.get('telefono')?.hasError('maxlength')">El teléfono debe tener como máximo 9 dígitos</mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Dirección</mat-label>
+        <input matInput formControlName="direccion" required>
+        <mat-error *ngIf="clienteForm.get('direccion')?.hasError('required')">Este campo es obligatorio</mat-error>
+      </mat-form-field>
+    
+      <button mat-raised-button color="primary" [disabled]="!clienteForm.valid" type="submit" class="submit-button"><mat-icon>add</mat-icon>Registrar Cliente</button>
+    </form>
+</div> 
+
+<br><br>

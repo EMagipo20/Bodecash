@@ -11,17 +11,11 @@ import { tap } from 'rxjs/operators';
 })
 export class AuthService {
   private loginUrl = `${environment.chBase}/auth/login`;
-  private jwtHelper = new JwtHelperService();
-
+  
   constructor(private http: HttpClient) {}
 
-  login(jwtRequest: JwtRequest): Observable<string> {
-    return this.http.post(this.loginUrl, jwtRequest, { responseType: 'text' }).pipe(
-      tap(token => {
-        this.saveToken(token);
-        console.log('Token:', token);
-      })
-    );
+  login(jwtRequest: JwtRequest) {
+    return this.http.post(this.loginUrl, jwtRequest)
   }
 
   showRole() {
@@ -33,17 +27,19 @@ export class AuthService {
     const decodedToken = helper.decodeToken(token);
     return decodedToken?.role;
   }
-
-  saveToken(token: string) {
-    sessionStorage.setItem('token', token);
-  }
-
+  
   verificar() {
     let token = sessionStorage.getItem('token');
     return token != null;
   }
 
-  logout() {
-    sessionStorage.removeItem('token');
+  getUsername() {
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+      return null;
+    }
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(token);
+    return decodedToken?.sub;
   }
 }

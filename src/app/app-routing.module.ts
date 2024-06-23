@@ -7,6 +7,7 @@ import { segGuard } from './guards/seguridad.guard';
 import { SidenavComponent } from './bodecash/sidenav/sidenav.component';
 import { ClienteComponent } from './bodecash/component/cliente/cliente.component'; // Importa el componente
 import { ReportesComponent } from './bodecash/component/reportes/reportes.component';
+import { ClienteCrearComponent } from './bodecash/component/cliente/cliente-crear/cliente-crear.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
