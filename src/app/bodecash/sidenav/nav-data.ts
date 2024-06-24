@@ -9,7 +9,7 @@ export const navbarData: INavbarData[] = [
             {
                 routeLink: 'cliente/cliente-crear',
                 icon: 'fal fa-user',
-                label: 'Nuveo Cliente',
+                label: 'Nuevo Cliente',
             },
             {
                 routeLink: 'cliente/cliente-listar',
@@ -20,15 +20,37 @@ export const navbarData: INavbarData[] = [
     },
     {
         routeLink: 'producto',
-        icon: 'fal fa-users-cog',
-        label: 'PRODUCTO'
-
+        icon: 'fal fa-boxes',
+        label: 'PRODUCTOS',
+        items: [
+            {
+                routeLink: 'producto/producto-crear',
+                icon: 'fal fa-box-open',
+                label: 'Nuevo Producto',
+            },
+            {
+                routeLink: 'producto/producto-listar',
+                icon: 'fal fa-list-alt',
+                label: 'Lista de Productos',
+            },
+        ]
     },
     {
         routeLink: 'tipo_de_producto',
-        icon: 'fal fa-warehouse',
-        label: 'TIPO DE PRODUCTO'
-
+        icon: 'fal fa-tags',
+        label: 'TIPO DE PRODUCTO',
+        items: [
+            {
+                routeLink: 'tipo_de_producto/tipo-producto-crear',
+                icon: 'fal fa-tag',
+                label: 'Nueva Categoría',
+            },
+            {
+                routeLink: 'tipo_de_producto/tipo-producto-listar',
+                icon: 'fal fa-list',
+                label: 'Lista de Categorías',
+            },
+        ]
     },
     {
         routeLink: 'venta',

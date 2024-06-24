@@ -1,0 +1,12 @@
+<div class="card">
+    <h2>Crear Tipo de Producto</h2>
+    <form [formGroup]="tipoProductoForm" (ngSubmit)="crearTipoProducto()" class="form">
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Descripción</mat-label>
+        <input matInput formControlName="descripcion" required>
+        <mat-error *ngIf="tipoProductoForm.get('descripcion')?.hasError('required')">La descripcion es requerido</mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="!tipoProductoForm.valid" type="submit" class="submit-button"><mat-icon>add</mat-icon>Registrar categoria</button>
+    </form>
+</div>
+  

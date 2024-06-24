@@ -1,4 +1,3 @@
-import { DetalleVenta } from "./detalleVenta";
 import { TipoProducto } from "./TipoProducto";
 
 export class Producto {
@@ -7,6 +6,5 @@ export class Producto {
     detalleProducto: string = '';
     precio: number = 0;
     stock: number = 0;
-    tipoProducto: TipoProducto = new TipoProducto();
-    detalleVentas: DetalleVenta[] = [];
+    idtipoProducto: TipoProducto = new TipoProducto();
 }

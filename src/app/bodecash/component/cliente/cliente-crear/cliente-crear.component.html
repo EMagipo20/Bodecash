@@ -1,5 +1,6 @@
 <div class="card">
-    <form [formGroup]="clienteForm" (ngSubmit)="continuar()" class="form">
+  <h2>Agregar nuevo cliente</h2>
+    <form [formGroup]="clienteForm" (ngSubmit)="Registrar()" class="form">
       <mat-form-field appearance="fill" class="form-field">
         <mat-label>Nombre</mat-label>
         <input matInput formControlName="nombre" required>

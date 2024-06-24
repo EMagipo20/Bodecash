@@ -8,11 +8,12 @@ import { environment } from '../../environments/enviroment';
   providedIn: 'root'
 })
 export class TipoProductoService {
-  private baseUrl = `${environment.chBase}/productos`;
+  private baseUrl = `${environment.chBase}/tipo-productos`;
 
   constructor(private httpClient: HttpClient) { }
+
   registrarTipoProducto(tipoProducto: TipoProducto): Observable<TipoProducto> {
-    return this.httpClient.post<TipoProducto>(this.baseUrl + '/registrar', tipoProducto);
+    return this.httpClient.post<TipoProducto>(`${this.baseUrl}/registrar`, tipoProducto);
   }
 
   actualizarTipoProducto(id: number, tipoProducto: TipoProducto): Observable<TipoProducto> {
@@ -20,7 +21,7 @@ export class TipoProductoService {
   }
 
   listarTodosLosTipoProductos(): Observable<TipoProducto[]> {
-    return this.httpClient.get<TipoProducto[]>(this.baseUrl + '/listar');
+    return this.httpClient.get<TipoProducto[]>(`${this.baseUrl}/listar`);
   }
 
   eliminarTipoProducto(id: number): Observable<any> {

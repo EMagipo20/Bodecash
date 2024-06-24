@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-producto',
   standalone: true,
-  imports: [],
+  imports: [RouterOutlet ],
   templateUrl: './producto.component.html',
   styleUrl: './producto.component.scss'
 })

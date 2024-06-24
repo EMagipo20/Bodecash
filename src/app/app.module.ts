@@ -14,6 +14,10 @@ import { JwtModuleOptions } from '@auth0/angular-jwt';
 import { RegisterComponent } from './auth/register/register.component';
 import { ClienteCrearComponent } from './bodecash/component/cliente/cliente-crear/cliente-crear.component';
 import { ClienteListarComponent } from './bodecash/component/cliente/cliente-listar/cliente-listar.component';
+import { TipoProductoListarComponent } from './bodecash/component/tipo-de-producto/tipo-producto-listar/tipo-producto-listar.component';
+import { ProductoListarComponent } from './bodecash/component/producto/producto-listar/producto-listar.component';
+import { TipoProductoCrearComponent } from './bodecash/component/tipo-de-producto/tipo-producto-crear/tipo-producto-crear.component';
+import { ProductoCrearComponent } from './bodecash/component/producto/producto-crear/producto-crear.component';
 
 export function tokenGetter() {
   return sessionStorage.getItem('token');
@@ -39,7 +43,11 @@ const jwtModuleOptions: JwtModuleOptions = {
     BodyComponent,
     RegisterComponent,
     ClienteCrearComponent,
-    ClienteListarComponent
+    ClienteListarComponent,
+    TipoProductoListarComponent,
+    TipoProductoCrearComponent,
+    ProductoListarComponent,
+    ProductoCrearComponent
   ],
   imports: [
     BrowserModule,
