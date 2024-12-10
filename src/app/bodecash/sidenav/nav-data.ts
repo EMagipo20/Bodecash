@@ -55,18 +55,57 @@ export const navbarData: INavbarData[] = [
     {
         routeLink: 'venta',
         icon: 'fal fa-credit-card',
-        label: 'VENTA'
+        label: 'VENTA',
+        items: [
+            {
+                routeLink: 'venta/crear-actualizar-detalle-venta',
+                icon: 'fal fa-cart-plus',
+                label: 'Nueva Venta',
+            },
+            {
+                routeLink: 'venta/listar-detalles-venta',
+                icon: 'fal fa-list',
+                label: 'Lista de Ventas',
+            },
+        ]
     },
     {
         routeLink: 'credito',
         icon: 'fal fa-history',
-        label: 'CRÉDITO'
-
+        label: 'CRÉDITO',
+        items: [
+            {
+                routeLink: 'credito/crear-credito',
+                icon: 'fal fa-hand-holding-usd',
+                label: 'Nuevo Crédito',
+            },
+            {
+                routeLink: 'credito/listar-creditos',
+                icon: 'fal fa-list',
+                label: 'Lista de Créditos',
+            },
+            {
+                routeLink: 'credito/listar-detalles-credito',
+                icon: 'fal fa-list',
+                label: 'Detalles créditos',
+            },
+        ]
     },
     {
         routeLink: 'reportes',
         icon: 'fal fa-cog',
-        label: 'REPORTES'
-
+        label: 'REPORTES',
+        items: [
+            {
+                routeLink: 'reportes/crear-actualizar-pago',
+                icon: 'fal fa-money-bill-wave',
+                label: 'Registrar Pago',
+            },
+            {
+                routeLink: 'reportes/listar-pagos',
+                icon: 'fal fa-file-alt',
+                label: 'Lista de Pagos',
+            }
+        ]
     }
 ];

@@ -1,5 +1,6 @@
-export enum TipoInteresEnum {
-    NOMINAL = "NOMINAL",
-    EFECTIVO = "EFECTIVO",
-    ANUALIDAD_SIMPLE = "ANUALIDAD_SIMPLE"
+export enum TipoPagoEnum {
+    VISA = 'VISA',
+    MASTERCARD = 'MASTERCARD',
+    YAPE = 'YAPE',
+    EFECTIVO = 'EFECTIVO'
 }

@@ -1,0 +1,78 @@
+<div class="card">
+  <h2>Nuevo Detalle de Venta</h2>
+  <form [formGroup]="detalleVentaForm" (ngSubmit)="registrarDetalleVenta()" class="form">
+    
+    <!-- Selección de Producto -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Producto</mat-label>
+      <mat-select formControlName="idProducto">
+        <mat-option *ngIf="productos.length === 0" disabled>No hay productos disponibles</mat-option>
+        <mat-option *ngFor="let producto of productos" [value]="producto.id">
+          {{ producto.nombreProducto }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="detalleVentaForm.get('idProducto')?.hasError('required')">
+        El producto es requerido
+      </mat-error>
+    </mat-form-field>
+    
+    <!-- Selección de Cliente -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Cliente</mat-label>
+      <mat-select formControlName="idCliente">
+        <mat-option *ngIf="clientes.length === 0" disabled>No hay clientes disponibles</mat-option>
+        <mat-option *ngFor="let cliente of clientes" [value]="cliente.id">
+          {{ cliente.nombre }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="detalleVentaForm.get('idCliente')?.hasError('required')">
+        El cliente es requerido
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Campo Cantidad -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Cantidad</mat-label>
+      <input matInput formControlName="cantidad" type="number" min="1">
+      <mat-error *ngIf="detalleVentaForm.get('cantidad')?.hasError('required')">
+        La cantidad es requerida
+      </mat-error>
+      <mat-error *ngIf="detalleVentaForm.get('cantidad')?.hasError('min')">
+        La cantidad debe ser mayor a 0
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Campo Precio -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Precio total</mat-label>
+      <input matInput formControlName="precio">
+    </mat-form-field>
+
+    <!-- Campo Fecha de Venta -->
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Fecha de Venta</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="fechaVenta">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="detalleVentaForm.get('fechaVenta')?.hasError('required')">
+        La fecha de venta es requerida
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Botón de Registro -->
+    <button 
+      mat-raised-button 
+      color="primary" 
+      type="submit" 
+      [disabled]="!detalleVentaForm.valid"
+      style="margin: 0 auto; display: block;" 
+      class="submit-button">
+      <mat-icon>add</mat-icon> Registrar
+    </button>
+
+    <!-- Mensaje de Validación General -->
+    <div *ngIf="!detalleVentaForm.valid" style="color: red; text-align: center; margin-top: 10px;">
+      Complete todos los campos requeridos antes de continuar.
+    </div>
+  </form>
+</div>

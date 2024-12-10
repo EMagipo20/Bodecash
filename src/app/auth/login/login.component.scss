@@ -1,4 +1,23 @@
+.container {
+   border-color: blueviolet;
+}
+
+h2 {
+  font-weight: 600;
+  font-family: Roboto;
+  color: rgb(238, 238, 238);
+  font-size: 20px;
+}
+
+p {
+  font-weight: 600;
+  font-family: Roboto;
+  color: rgb(238, 238, 238);
+}
+
 mat-form-field {
-    width: 50%;
+    width: 30%;
+    height: 73px
   }
+
   

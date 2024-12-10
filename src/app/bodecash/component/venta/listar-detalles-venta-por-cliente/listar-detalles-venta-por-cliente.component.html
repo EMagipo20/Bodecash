@@ -1,0 +1,58 @@
+<div class="container">
+    <h2>Lista de Ventas</h2>
+    <label for="clienteId">Filtrar por ID de Cliente:</label>
+    <input type="number" id="clienteId" name="clienteId" [(ngModel)]="clienteId">
+    <button mat-raised-button color="primary" (click)="filtrarPorCliente()">Filtrar por Cliente</button>
+  
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- Columna Monto Total -->
+      <ng-container matColumnDef="montoTotal">
+        <th mat-header-cell *matHeaderCellDef> Monto Total </th>
+        <td mat-cell *matCellDef="let venta"> {{ venta.montoTotal }} </td>
+      </ng-container>
+  
+      <!-- Columna Detalles de Venta -->
+      <ng-container matColumnDef="detallesVenta">
+        <th mat-header-cell *matHeaderCellDef> Detalles de Venta </th>
+        <td mat-cell *matCellDef="let venta">
+          <table mat-table [dataSource]="venta.detallesVenta" class="inner-table">
+            <!-- Columnas de los detalles de venta -->
+            <ng-container matColumnDef="idDetalleVenta">
+              <th mat-header-cell *matHeaderCellDef> ID Detalle Venta </th>
+              <td mat-cell *matCellDef="let detalleVenta"> {{ detalleVenta.idDetalleVenta }} </td>
+            </ng-container>
+            <ng-container matColumnDef="cantidad">
+              <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+              <td mat-cell *matCellDef="let detalleVenta"> {{ detalleVenta.cantidad }} </td>
+            </ng-container>
+            <ng-container matColumnDef="precio">
+              <th mat-header-cell *matHeaderCellDef> Precio </th>
+              <td mat-cell *matCellDef="let detalleVenta"> {{ detalleVenta.precio | currency:'USD':'symbol':'1.2-2' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="fechaVenta">
+              <th mat-header-cell *matHeaderCellDef> Fecha de Venta </th>
+              <td mat-cell *matCellDef="let detalleVenta"> {{ detalleVenta.fechaVenta | date:'mediumDate' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="idProducto">
+              <th mat-header-cell *matHeaderCellDef> ID Producto </th>
+              <td mat-cell *matCellDef="let detalleVenta"> {{ detalleVenta.idProducto }} </td>
+            </ng-container>
+            <ng-container matColumnDef="idCliente">
+              <th mat-header-cell *matHeaderCellDef> ID Cliente </th>
+              <td mat-cell *matCellDef="let detalleVenta"> {{ detalleVenta.idCliente }} </td>
+            </ng-container>
+  
+            <!-- Filas de encabezado -->
+            <tr mat-header-row *matHeaderRowDef="['idDetalleVenta', 'cantidad', 'precio', 'fechaVenta', 'idProducto', 'idCliente']"></tr>
+            <!-- Filas de datos -->
+            <tr mat-row *matRowDef="let detalleVenta; columns: ['idDetalleVenta', 'cantidad', 'precio', 'fechaVenta', 'idProducto', 'idCliente']"></tr>
+          </table>
+        </td>
+      </ng-container>
+  
+      <!-- Filas de encabezado principal -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <!-- Filas de datos principales -->
+      <tr mat-row *matRowDef="let venta; columns: displayedColumns;"></tr>
+    </table>
+  </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Cliente } from '../../../../models/cliente';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './cliente-crear.component.html',
   styleUrls: ['./cliente-crear.component.scss']
 })
-export class ClienteCrearComponent {
+export class ClienteCrearComponent implements OnInit {
   clienteForm: FormGroup = new FormGroup({});
   cliente: Cliente = new Cliente();
   username: string;
@@ -34,7 +34,7 @@ export class ClienteCrearComponent {
       apellido: ['', Validators.required],
       correo: ['', [Validators.required, Validators.email]],
       numeroDocumento: ['', Validators.required],
-      limiteCredito: ['', Validators.required],
+      limiteCredito: ['', [Validators.required, Validators.max(600)]],
       telefono: ['', [Validators.required, Validators.maxLength(9)]],
       direccion: ['', Validators.required]
     });
@@ -42,6 +42,9 @@ export class ClienteCrearComponent {
 
   Registrar(): void {
     if (this.clienteForm.invalid) {
+      if (this.clienteForm.controls['limiteCredito'].hasError('max')) {
+        this.showErrorMessage('El límite de crédito no puede exceder los 600 soles');
+      }
       return;
     }
 

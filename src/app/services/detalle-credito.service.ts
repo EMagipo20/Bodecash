@@ -15,4 +15,8 @@ export class DetalleCreditoService {
     listarDetallesPorCredito(idCredito: number): Observable<DetalleCredito[]> {
         return this.http.get<DetalleCredito[]>(`${this.baseUrl}/listar/${idCredito}`);
     }
+
+    listarTodos(): Observable<DetalleCredito[]> {
+        return this.http.get<DetalleCredito[]>(`${this.baseUrl}/listarTodos`);
+    }
 }

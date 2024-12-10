@@ -15,7 +15,7 @@
 
   h2 {
     margin-bottom: 20px;
-    color: #dadada;
+    color: #3f51b5;
     text-align: center;
   }
   
@@ -36,12 +36,15 @@
     box-sizing: border-box;
   }
 
-  .submit-button {
-    margin-top: 10px;
-    width: 180px;
-    height: 50px;
-    align-self: center;
-    border-radius: 10px;
+  .form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .submit-button, .cancel-button {
+    width: 150px;
+    margin: 10px 0;
   }
   
   label {

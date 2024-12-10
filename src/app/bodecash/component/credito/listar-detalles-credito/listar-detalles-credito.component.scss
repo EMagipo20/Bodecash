@@ -1,13 +1,44 @@
 .container {
     margin: auto;
-    max-width: 1150px;
+    max-width: 1300px;
     padding: 20px;
     border-radius: 8px;
   
     h2 {
       margin-bottom: 20px;
-      color: #ffffff;
+      color: #dfdfdf;
       text-align: center;
+    }
+
+    .filter-form {
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 3px;
+    }
+    
+    .form-field {
+      flex: 1;
+      max-width: 300px;
+      height: 75px;
+    
+      .mat-form-field-wrapper {
+        border-radius: 8px;
+      }
+    
+      .mat-form-field-flex {
+        border-radius: 8px;
+      }
+    
+      input.mat-input-element {
+        border-radius: 8px;
+      }
+    }
+    
+    button {
+      height: 56px;
+      margin-top: 10px;
     }
   
     .mat-table {
@@ -52,4 +83,5 @@
       }
     }
   }
+  
   

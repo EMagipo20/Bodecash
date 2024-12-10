@@ -12,12 +12,12 @@ export class DetalleVentaService {
 
     constructor(private http: HttpClient) {}
 
-    registrarDetalleVenta(detalleVentaDTO: DetalleVenta): Observable<any> {
-        return this.http.post<any>(`${this.baseUrl}/registrar`, detalleVentaDTO);
+    registrarDetalleVenta(detalleVenta: DetalleVenta): Observable<DetalleVenta> {
+        return this.http.post<DetalleVenta>(`${this.baseUrl}/registrar`, detalleVenta);
     }
 
-    actualizarDetalleVenta(id: number, detalleVentaDTO: DetalleVenta): Observable<any> {
-        return this.http.put<any>(`${this.baseUrl}/actualizar/${id}`, detalleVentaDTO);
+    actualizarDetalleVenta(id: number, detalleVenta: DetalleVenta): Observable<DetalleVenta> {
+        return this.http.put<DetalleVenta>(`${this.baseUrl}/actualizar/${id}`, detalleVenta);
     }
 
     listarDetalleVentaPorCliente(id: number): Observable<any> {
@@ -30,5 +30,9 @@ export class DetalleVentaService {
 
     eliminarDetalleVenta(id: number): Observable<any> {
         return this.http.delete<any>(`${this.baseUrl}/eliminar/${id}`);
+    }
+
+    MontoTotal(idCliente: number): Observable<number> {
+        return this.http.get<number>(`${this.baseUrl}/monto-total/${idCliente}`);
     }
 }

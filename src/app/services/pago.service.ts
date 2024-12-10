@@ -12,15 +12,19 @@ export class PagoService {
 
     constructor(private http: HttpClient) {}
 
-    registrarPago(pago: Pagos): Observable<any> {
-        return this.http.post<any>(`${this.baseUrl}/registrar`, pago);
+    registrarPago(pago: Pagos): Observable<Pagos> {
+        return this.http.post<Pagos>(`${this.baseUrl}/registrar`, pago);
     }
 
-    actualizarPago(id: number, pago: Pagos): Observable<any> {
-        return this.http.put<any>(`${this.baseUrl}/actualizar/${id}`, pago);
+    actualizarPago(id: number, pago: Pagos): Observable<Pagos> {
+        return this.http.put<Pagos>(`${this.baseUrl}/actualizar/${id}`, pago);
     }
 
     eliminarPago(id: number): Observable<any> {
         return this.http.delete<any>(`${this.baseUrl}/eliminar/${id}`);
+    }
+
+    listarPagos(): Observable<Pagos[]> {
+        return this.http.get<Pagos[]>(`${this.baseUrl}/listar`);
     }
 }

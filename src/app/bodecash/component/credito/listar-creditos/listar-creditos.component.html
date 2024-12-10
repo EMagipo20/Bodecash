@@ -1,0 +1,74 @@
+<div class="card">
+    <h2>Lista de Créditos</h2>
+    <table mat-table [dataSource]="creditos" class="mat-elevation-z8">
+      <ng-container matColumnDef="idCredito">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let credito"> {{credito.idCredito}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="monto">
+        <th mat-header-cell *matHeaderCellDef> Monto </th>
+        <td mat-cell *matCellDef="let credito"> {{credito.monto}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="fechaInicio">
+        <th mat-header-cell *matHeaderCellDef> Fecha de Inicio </th>
+        <td mat-cell *matCellDef="let credito"> {{credito.fechaInicio}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="fechaFin">
+        <th mat-header-cell *matHeaderCellDef> Fecha de Fin </th>
+        <td mat-cell *matCellDef="let credito"> {{credito.fechaFin}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let credito"> {{credito.estado ? 'Activo' : 'Inactivo'}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="tipoCredito">
+        <th mat-header-cell *matHeaderCellDef> Tipo de Crédito </th>
+        <td mat-cell *matCellDef="let credito"> {{credito.tipoCredito}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="tipoInteres">
+        <th mat-header-cell *matHeaderCellDef> Tipo de Interés </th>
+        <td mat-cell *matCellDef="let credito"> {{credito.tipoInteres}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="plazoGracia">
+        <th mat-header-cell *matHeaderCellDef> Plazo de Gracia </th>
+        <td mat-cell *matCellDef="let credito"> 
+          {{ credito.tipoInteres === 'ANUALIDAD_SIMPLE' ? credito.plazoGracia : 'N/A' }}
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="numeroDiasCuota">
+        <th mat-header-cell *matHeaderCellDef> Número de Días </th>
+        <td mat-cell *matCellDef="let credito"> 
+          {{ credito.numeroDiasCuota }} 
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="idCliente">
+        <th mat-header-cell *matHeaderCellDef> Cliente </th>
+        <td mat-cell *matCellDef="let credito"> {{ getClienteNombre(credito.idCliente) }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let credito">
+          <button mat-icon-button color="warn" (click)="eliminarCredito(credito.idCredito)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" [routerLink]="['/detalles', credito.idCredito]">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  

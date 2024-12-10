@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { JwtRequest } from '../../models/jwtRequest';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -28,6 +27,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  hide: boolean = true;
   mensaje: string = '';
   
   constructor(
@@ -50,6 +50,10 @@ export class LoginComponent {
         this.snackBar.open(this.mensaje, 'Aviso', { duration: 2000 });
       }
     );
+  }
+
+  togglePasswordVisibility(): void {
+    this.hide = !this.hide;
   }
 
   navigateToRegister() {

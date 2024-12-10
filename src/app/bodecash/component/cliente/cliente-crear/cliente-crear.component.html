@@ -30,6 +30,7 @@
         <mat-label>Límite de Crédito</mat-label>
         <input matInput formControlName="limiteCredito" required>
         <mat-error *ngIf="clienteForm.get('limiteCredito')?.hasError('required')">Este campo es obligatorio</mat-error>
+        <mat-error *ngIf="clienteForm.get('limiteCredito')?.hasError('maxlength')">El limite de credito no debe excederse de los 600 soles</mat-error>
       </mat-form-field>
     
       <mat-form-field appearance="fill" class="form-field">

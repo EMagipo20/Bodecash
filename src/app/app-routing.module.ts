@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
-import { DashboardComponent } from './bodecash/dashboard/dashboard.component';
 import { segGuard } from './guards/seguridad.guard';
 import { SidenavComponent } from './bodecash/sidenav/sidenav.component';
 import { ClienteComponent } from './bodecash/component/cliente/cliente.component';
@@ -13,6 +12,13 @@ import { ProductoCrearComponent } from './bodecash/component/producto/producto-c
 import { ProductoListarComponent } from './bodecash/component/producto/producto-listar/producto-listar.component';
 import { TipoProductoCrearComponent } from './bodecash/component/tipo-de-producto/tipo-producto-crear/tipo-producto-crear.component';
 import { TipoProductoListarComponent } from './bodecash/component/tipo-de-producto/tipo-producto-listar/tipo-producto-listar.component';
+import { CrearActualizarDetalleVentaComponent } from './bodecash/component/venta/crear-actualizar-detalle-venta/crear-actualizar-detalle-venta.component';
+import { CrearCreditoComponent } from './bodecash/component/credito/crear-credito/crear-credito.component';
+import { ListarCreditosComponent } from './bodecash/component/credito/listar-creditos/listar-creditos.component';
+import { ListarDetallesCreditoComponent } from './bodecash/component/credito/listar-detalles-credito/listar-detalles-credito.component';
+import { CrearActualizarPagoComponent } from './bodecash/component/reportes/crear-actualizar-pago/crear-actualizar-pago.component';
+import { ListarPagosComponent } from './bodecash/component/reportes/listar-pagos/listar-pagos.component';
+import { ListarDetallesVentaPorClienteComponent } from './bodecash/component/venta/listar-detalles-venta-por-cliente/listar-detalles-venta-por-cliente.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -43,9 +49,28 @@ const routes: Routes = [
          ],
          canActivate: [segGuard]
       },
-      { path: 'venta', component: ClienteComponent, canActivate: [segGuard] },
-      { path: 'credito', component: ClienteComponent, canActivate: [segGuard] },
-      { path: 'reportes', component: ReportesComponent, canActivate: [segGuard] }
+      { path: 'venta', component: ClienteComponent,
+        children: [
+          { path: 'crear-actualizar-detalle-venta', component: CrearActualizarDetalleVentaComponent },
+          { path: 'listar-detalles-venta', component: ListarDetallesVentaPorClienteComponent },
+        ],
+        canActivate: [segGuard]
+      },
+      { path: 'credito', component: ClienteComponent,
+        children: [
+          { path: 'crear-credito', component: CrearCreditoComponent },
+          { path: 'listar-creditos', component: ListarCreditosComponent },
+          { path: 'listar-detalles-credito', component: ListarDetallesCreditoComponent },
+        ],
+        canActivate: [segGuard]
+      },
+      { path: 'reportes', component: ReportesComponent,
+        children: [
+          { path: 'crear-actualizar-pago', component: CrearActualizarPagoComponent },
+          { path: 'listar-pagos', component: ListarPagosComponent },
+        ],
+        canActivate: [segGuard]
+      }
     ]
   }
 ];

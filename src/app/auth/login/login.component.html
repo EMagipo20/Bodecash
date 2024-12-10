@@ -1,16 +1,25 @@
+<br><br><br><br><br><br>
 <div class="container" style="text-align: center">
-  <h2>Inicie sesión</h2>
+  <h2>Iniciar sesión</h2>
   <mat-form-field class="example-full-width">
     <mat-label>Usuario</mat-label>
     <input matInput placeholder="Username" [(ngModel)]="username" />
+    <!-- Ícono de usuario al lado derecho -->
+    <mat-icon matSuffix>person</mat-icon>
   </mat-form-field>
   <br />
   <mat-form-field class="example-full-width">
     <mat-label>Password</mat-label>
-    <input type="password" matInput placeholder="Password" [(ngModel)]="password" />
+    <input [type]="hide ? 'password' : 'text'" matInput placeholder="Password" [(ngModel)]="password" />
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
   </mat-form-field>
   <br />
-  <button mat-raised-button color="primary" (click)="login()">Ingresar</button>
+  <button mat-raised-button color="primary" (click)="login()">
+    <mat-icon>login</mat-icon>
+    Ingresar
+  </button>
   <br/><br/>
   <p>¿No tienes una cuenta? <a href="/register" (click)="navigateToRegister()">Regístrate aquí</a></p>
 </div>

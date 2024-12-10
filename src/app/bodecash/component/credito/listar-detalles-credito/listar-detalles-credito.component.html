@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="card">
+      <h2>Detalles del Crédito</h2>
+      <form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="filter-form">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Buscar por id de crédito</mat-label>
+          <input matInput formControlName="idCredito" placeholder="Buscar por id de crédito">
+          <button mat-icon-button matSuffix type="submit">
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+      <table mat-table [dataSource]="detallesCredito" class="mat-elevation-z8">
+        <ng-container matColumnDef="idDetalleCredito">
+          <th mat-header-cell *matHeaderCellDef> ID Detalle Crédito </th>
+          <td mat-cell *matCellDef="let detalle"> {{detalle.idDetalleCredito}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="saldoInicial">
+          <th mat-header-cell *matHeaderCellDef> Saldo Inicial </th>
+          <td mat-cell *matCellDef="let detalle"> {{detalle.saldoInicial}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="interes">
+          <th mat-header-cell *matHeaderCellDef> Interés </th>
+          <td mat-cell *matCellDef="let detalle"> {{detalle.interes}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="renta">
+          <th mat-header-cell *matHeaderCellDef> Renta </th>
+          <td mat-cell *matCellDef="let detalle"> {{detalle.renta}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="amortizacion">
+          <th mat-header-cell *matHeaderCellDef> Amortización </th>
+          <td mat-cell *matCellDef="let detalle"> {{detalle.amortizacion}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="saldoFinal">
+          <th mat-header-cell *matHeaderCellDef> Saldo Final </th>
+          <td mat-cell *matCellDef="let detalle"> {{detalle.saldoFinal}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="fechaPagoCuota">
+          <th mat-header-cell *matHeaderCellDef> Fecha Pago Cuota </th>
+          <td mat-cell *matCellDef="let detalle"> {{detalle.fechaPagoCuota | date}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="estadoPago">
+          <th mat-header-cell *matHeaderCellDef> Estado Pago </th>
+          <td mat-cell *matCellDef="let detalle"> {{detalle.estadoPago ? 'Pagado' : 'Pendiente'}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="mora">
+          <th mat-header-cell *matHeaderCellDef> Mora </th>
+          <td mat-cell *matCellDef="let detalle"> {{detalle.mora}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="idCredito">
+          <th mat-header-cell *matHeaderCellDef> ID Crédito </th>
+          <td mat-cell *matCellDef="let detalle"> {{detalle.idCredito}} </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>  
+  

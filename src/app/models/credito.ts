@@ -1,38 +1,18 @@
-import { Cliente } from "./cliente";
-import { DetalleCredito } from "./detalleCreditos";
+import { Cliente } from './cliente';
+import { DetalleCredito } from './detalleCreditos';
+import { TipoCreditoEnum, TipoInteresEnum, PlazoGraciaEnum, NumeroDiasCuotaEnum } from './enums';
 
 export class Credito {
     id: number = 0;
-    monto: number = 0;
-    fechaInicio: string = '';
-    fechaFin: string = '';
+    monto: number = 0.0;
+    fechaInicio: Date = new Date();
+    fechaFin: Date = new Date();
     estado: boolean = false;
     tipoCredito: TipoCreditoEnum = TipoCreditoEnum.CORTO_PLAZO;
     tipoInteres: TipoInteresEnum = TipoInteresEnum.NOMINAL;
-    plazoGracia: PlazoGraciaEnum = PlazoGraciaEnum.SIN_GRACIA;
-    numeroDiasCuota: NumeroDiasCuotaEnum = NumeroDiasCuotaEnum.MENSUAL;
+    plazoGracia: PlazoGraciaEnum = PlazoGraciaEnum.CERO;
+    numeroDiasCuota: NumeroDiasCuotaEnum = NumeroDiasCuotaEnum.TREINTA;
 
-    cliente: Cliente = new Cliente();
+    idCliente: number = 0;
     detalleCreditos: DetalleCredito[] = [];
-}
-
-export enum TipoCreditoEnum {
-    CORTO_PLAZO = "CORTO_PLAZO",
-    LARGO_PLAZO = "LARGO_PLAZO"
-}
-
-export enum TipoInteresEnum {
-    EFECTIVO = "EFECTIVO",
-    NOMINAL = "NOMINAL",
-    ANUALIDAD_SIMPLE = "ANUALIDAD_SIMPLE"
-}
-
-export enum PlazoGraciaEnum {
-    CON_GRACIA = "CON_GRACIA",
-    SIN_GRACIA = "SIN_GRACIA"
-}
-
-export enum NumeroDiasCuotaEnum {
-    QUINCENAL = "QUINCENAL",
-    MENSUAL = "MENSUAL"
 }
